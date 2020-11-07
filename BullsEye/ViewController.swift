@@ -26,6 +26,25 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // Setuo Slider
+        let thumbImageNormal = #imageLiteral(resourceName: "SliderThumb-Normal")
+        slider.setThumbImage(thumbImageNormal, for: .normal)
+ 
+        let thumbImageHighlited = #imageLiteral(resourceName: "SliderThumb-Highlighted")
+        slider.setThumbImage(thumbImageHighlited, for: .highlighted)
+        
+        let myInsets = UIEdgeInsets(top: 5, left:15, bottom: 5, right: 15)
+        
+        let trackLeftImage = #imageLiteral(resourceName: "SliderTrackLeft")
+        let trackLeftResizable = trackLeftImage.resizableImage(withCapInsets: myInsets)
+        slider.setMinimumTrackImage(trackLeftResizable, for: .normal)
+        
+        let trackRightImage = #imageLiteral(resourceName: "SmallButton")
+        let trackRightResizable = trackRightImage.resizableImage(withCapInsets: myInsets)
+        slider.setMaximumTrackImage(trackRightResizable, for: .normal)
+        
+        
+        // Initial values
         slider.value = Float(currentValue)
         startNewRound()
         refreshDisplay()
