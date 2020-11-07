@@ -6,8 +6,7 @@
 //
 
 import UIKit
-
-
+import GameKit
 
 class ViewController: UIViewController {
 
@@ -15,12 +14,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var statusLabel: UILabel!
     
     var targetValue:Int = 50
     var currentValue:Int = 50
     var score:Int = 0
     var round:Int = 0
     var points:Int = 0
+    var status:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +44,46 @@ class ViewController: UIViewController {
         let trackRightResizable = trackRightImage.resizableImage(withCapInsets: myInsets)
         slider.setMaximumTrackImage(trackRightResizable, for: .normal)
         
-        
-        // Initial values
+        // Initialize values
         slider.value = Float(currentValue)
         startNewRound()
         refreshDisplay()
+
+/*
+        // Setup GameCenter
+        let viewController = GK
+        GKLocalPlayer.local.authenticateHandler = { viewController, error in
+            if let viewController = viewController {
+                // Present the view controller so the player can sign in
+                return
+            }
+            if error != nil {
+                // Player could not be authenticated
+                // Disable Game Center in the game
+                return
+            }
+            
+            // Player was successfully authenticated
+            // Check if there are any player restrictions before starting the game
+                    
+            if GKLocalPlayer.local.isUnderage {
+                // Hide explicit game content
+            }
+
+            if GKLocalPlayer.local.isMultiplayerGamingRestricted {
+                // Disable multiplayer game features
+            }
+
+            if GKLocalPlayer.local.isPersonalizedCommunicationRestricted {
+                // Disable in game communication UI
+            }
+            
+            // Perform any other configurations as needed (for example, access point)
+        
+            // Place the access point on the upper-left corner
+            GKAccessPoint.shared.location = .topLeading
+        }
+ */
     }
     
     func startNewRound(){
@@ -60,6 +96,7 @@ class ViewController: UIViewController {
         targetLabel.text = String(targetValue)
         scoreLabel.text = String(score)
         roundLabel.text = String(round)
+        // statusLabel.text = String(GKLocalPlayer.local.isAuthenticated)
     }
     
     @IBAction func hitMe(){
@@ -99,6 +136,7 @@ class ViewController: UIViewController {
     @IBAction func slideMove(){
         currentValue = Int(slider.value.rounded())
     }
+    
 
 }
 
