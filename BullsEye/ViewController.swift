@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var slider: UISlider!
     
     var targetValue:Int = 50
-    var currentValue:Int = 0
+    var currentValue:Int = 50
     var score:Int = 0
     var round:Int = 0
     var points:Int = 0
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        slider.value = 50
+        slider.value = Float(currentValue)
         startNewRound()
         refreshDisplay()
     }
