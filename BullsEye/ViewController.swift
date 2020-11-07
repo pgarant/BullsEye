@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     }
     
     func startNewRound(){
+        round += 1
         targetValue = Int.random(in:1...100)
         refreshDisplay()
 }
@@ -53,6 +54,13 @@ class ViewController: UIViewController {
         score += points
         
         showAlert()
+        startNewRound()
+    }
+    
+    @IBAction func startAgain(){
+        score = 0
+        points = 0
+        round = 0
         startNewRound()
     }
     
